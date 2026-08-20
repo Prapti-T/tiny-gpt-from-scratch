@@ -524,12 +524,15 @@ def observe_lookup_equivalence(w, ids):
     Returns a dict with keys 'onehot_result' and 'index_result'.
     """
     # TODO: compute logits two ways and return both in a dict
-    k = one_hot_encode_batch(ids, w)
+    k = one_hot_encode_batch(ids, len(w))
     onehot_result = matmul(k, w)
 
     index_result = w[ids]
 
-    return onehot_result, index_result
+    return {
+        'onehot_result':onehot_result, 
+        'index_result':index_result,
+    }
 
 # Step 62 - forward_logits_lookup (not yet solved)
 # TODO: implement
